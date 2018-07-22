@@ -1,0 +1,35 @@
+﻿
+<div class="jumbotron">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-4">Hello @User.Identity.Name!</h1>
+        <p class=" lead">This is the name of the user</p>
+    }
+    else
+    {
+        <h1 class="display-4">Hello Users!</h1>
+        <p class=" lead">You need to login to see your name</p>
+    }
+    <p>This a sample app that mostrate how to login and register.
+    You need to register first with a valid email or you can login with a social media provider.</p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p>
+            <a class="btn btn-info btn-lg" role="button" asp-controller="Identity" asp-action="SignUp">
+                Sign Up
+            </a>
+        </p>
+    }
+</div>
+
+
+        @*<div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+            </div>
+            <div class="col-lg-6">
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+            </div>
+        </div>*@

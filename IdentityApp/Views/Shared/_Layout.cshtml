@@ -1,0 +1,76 @@
+﻿@inject Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider schemeProvider
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+    @*<link href="~/styles/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/styles/css/site.css" rel="stylesheet" />*@
+</head>
+<body>
+    <div class="container">
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <a class="navbar-brand" href="#">Authentication Multi Providers</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               
+                <ul class="navbar-nav mr-lg-auto float-lg-left" style="width: 100% !important; float: right;">
+                    @*<li class="nav-item mr-lg-5">
+                        <a class="nav-link" href="/userdata">User Data</a>
+                    </li>*@ 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/userdata">User Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" asp-controller="Identity" asp-action="SignOut">
+                                <button type="submit" class="btn btn-info">Sign Out</button>
+                            </form>
+                        </li>
+
+                    }
+
+
+                    else
+                    {
+
+
+                        @foreach (var provider in await schemeProvider.GetRequestHandlerSchemesAsync())
+                        {
+                            <li class="nav-item ml-1" style="color:white">
+                                <a class="btn btn-link" asp-controller="Identity" asp-action="SignInProviders"
+                                   asp-route-provider="@provider.Name"
+                                   asp-route-returnUrl="@Context.Request.Query["returnUrl"]">@provider.DisplayName</a>
+                            </li>
+                        }
+
+
+
+                        <li class="nav-item ml-xl-5 pull-right"><a class="btn btn-success" asp-controller="Identity" asp-action="SignIn">Sign In</a></li>
+
+                        <li class="nav-item ml-1 pull-right"><a class="btn btn-info " asp-controller="Identity" asp-action="SignUp">Sign Up</a></li>
+                    }
+                </ul>
+
+            </div>
+                </nav>
+
+                @RenderBody()
+
+                <footer class="footer">
+                    <p>&copy; 2018 - Powered by <a href="https://llgjermeni.github.io/llazar-resume/">Ll. Gjermeni</a></p>
+                </footer>
+
+                <script src="~/js/bootstrap.min.js"></script>
+            </div>
+        </body>
+    </html>
