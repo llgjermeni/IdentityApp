@@ -31,23 +31,23 @@ namespace IdentityApp
             })
                 .AddFacebook(options =>
                 {
-                    options.AppId = "254243155160654";
-                    options.AppSecret = "8cd678674cddfff3f062e77fd2dce236";
+                    options.AppId = "your appId";
+                    options.AppSecret = "your appSecret";
                 })
                 .AddTwitter(options =>
                 {
-                    options.ConsumerKey = "zKQo45x2jElBvTOSbIsqEAQOV";
-                    options.ConsumerSecret = "S15PXa8ZpkC5G9P8ENOCr1yfG7YPXQYWcPAXmznnZvPuhquJhD";
+                    options.ConsumerKey = "your ConsumerKey";
+                    options.ConsumerSecret = "your ConsumerSecret";
                 })
                 .AddMicrosoftAccount(options =>
                 {
-                    options.ClientId = "45256a15-d81c-4ab3-a536-aef9865369a1";
-                    options.ClientSecret = "jcxqgCQ093{pnDLHAI89$-*";
+                    options.ClientId = "your Microsoft ClientId";
+                    options.ClientSecret = "your Microsoft ClientSecret";
                 })
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "915952567520-2qbii9fdhg4tkt8228pfk0of7g3gbem4.apps.googleusercontent.com";
-                    options.ClientSecret = "uVZcvmr-z5khnTLtMGIBSOJl";
+                    options.ClientId = "your Google ClientId";
+                    options.ClientSecret = "Your Google ClientSecret";
                 })
             .AddCookie(options =>
             {
